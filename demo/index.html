@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>In-page edit</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" language="javascript"></script>
+<script type="text/javascript" src="tiny_mce/jquery.tinymce.js" language="javascript"></script>
+<script type="text/javascript" src="scripts/jquery.metadata.js" language="javascript"></script>
+<script type="text/javascript" src="jquery.autogrow.js" language="javascript"></script>
+<script type="text/javascript" src="jquery.rapidEdit.js" language="javascript"></script>
+<script type="text/javascript">
+$(document).ready( function() {
+	var settings = {
+					editLinkHoverAttribute: 'background-color',
+					editLinkHoverValue: 'red',
+					tinymce: true
+					};
+	$.rapidEdit("ajax.php", settings);
+});
+</script>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	background: #666666;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000000;
+}
+.twoColLiqRtHdr #container { 
+	position: relative;
+	width: 80%;  /* this will create a container 80% of the browser width */
+	background: #FFFFFF;
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	border: 1px solid #000000;
+	text-align: left; /* this overrides the text-align: center on the body element. */
+} 
+.twoColLiqRtHdr #header { 
+	background: #DDDDDD; 
+	padding: 0 10px;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+} 
+.twoColLiqRtHdr #header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+	padding: 10px 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+}
+
+.twoColLiqRtHdr #sidebar1 {
+	position: absolute;
+	right: 0;
+	width: 24%; 
+	background: #EBEBEB; /* the background color will be displayed for the length of the content in the column, but no further */
+	padding-top: 15px 0; /* top and bottom padding create visual space within this div  */
+}
+.twoColLiqRtHdr #sidebar1 h3, .twoColLiqRtHdr #sidebar1 p {
+	margin-left: 10px; /* the left and right margin should be given to every element that will be placed in the side columns */
+	margin-right: 10px;
+}
+
+.twoColLiqRtHdr #mainContent { 
+	margin: 0 26% 0 10px; /* the left margin should mirror the margin on the header and footer for proper alignment. */
+} 
+
+.twoColLiqRtHdr #footer { 
+	padding: 0 10px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
+	background:#DDDDDD; 
+	z-index: 100;
+} 
+.twoColLiqRtHdr #footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+
+/* Miscellaneous classes for reuse */
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+--> 
+</style><!--[if IE]>
+<style type="text/css"> 
+/* place css fixes for all versions of IE in this conditional comment */
+.twoColLiqRtHdr #sidebar1 { padding-top: 30px; }
+.twoColLiqRtHdr #mainContent { zoom: 1; padding-top: 15px; }
+/* the above proprietary zoom property gives IE the hasLayout it needs to avoid several bugs */
+</style>
+<![endif]-->
+</head>
+
+<body>
+<body class="twoColLiqRtHdr">
+
+<div id="container">
+  <div id="header">
+    <h1 class="editable">RapidEdit demo page</h1>
+  <!-- end #header --></div>
+  <div id="sidebar1" class="editable {setParentPositionRelative: 'FALSE'}">
+    <h3>sidebar1 Content</h3>
+    <p>The sidebar1 div has the setting setParentPositionRelative: 'FALSE'. <br /> <br />The background color on this div will only show for the length of the content. If you'd like a dividing line instead, place a border on the right side of the #mainContent div if the #mainContent div will always contain more content than the #sidebar1 div. </p>
+    <p>Donec eu mi sed turpis feugiat feugiat. Integer turpis arcu, pellentesque  eget, cursus et, fermentum ut, sapien. Fusce metus mi, eleifend  sollicitudin, molestie id, varius et, nibh. Donec nec libero.</p>
+  <!-- end #sidebar1 --></div>
+  <div id="mainContent">
+    <h1 class="editable {animationSpeed: 'slow', tinymce: false, autogrow: true}"> This has animationSpeed: 'slow', tinymce: false and autogrow: true.<br /> </h1>
+    <p class="editable {editLinkHoverAttribute: 'background-color', editLinkHoverValue: 'green', animation: false}">
+    This paragraph has this settings: editLinkHoverAttribute: 'background-color', editLinkHoverValue: 'green', animation: false.<br /> <br /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent aliquam,  justo convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam  ante ac quam. Maecenas urna purus, fermentum id, molestie in, commodo  porttitor, felis. Nam blandit quam ut lacus. Quisque ornare risus quis  ligula. Phasellus tristique purus a augue condimentum adipiscing. Aenean  sagittis. Etiam leo pede, rhoncus venenatis, tristique in, vulputate at,  odio. Donec et ipsum et sapien vehicula nonummy. Suspendisse potenti. Fusce  varius urna id quam. Sed neque mi, varius eget, tincidunt nec, suscipit id,  libero. In eget purus. Vestibulum ut nisl. Donec eu mi sed turpis feugiat  feugiat. Integer turpis arcu, pellentesque eget, cursus et, fermentum ut,  sapien. Fusce metus mi, eleifend sollicitudin, molestie id, varius et, nibh.  Donec nec libero.</p>
+    <h2>H2 level heading </h2>
+    <p class="editable {editLinkPosY: 'bottom'}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent aliquam,  justo convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam  ante ac quam. Maecenas urna purus, fermentum id, molestie in, commodo  porttitor, felis. Nam blandit quam ut lacus. Quisque ornare risus quis  ligula. Phasellus tristique purus a augue condimentum adipiscing. Aenean  sagittis. Etiam leo pede, rhoncus venenatis, tristique in, vulputate at, odio.</p>
+	<!-- end #mainContent --></div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+  <div id="footer" class="editable">
+    <p>Footer</p>
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>
+</html>
