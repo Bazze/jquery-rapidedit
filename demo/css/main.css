@@ -1,0 +1,183 @@
+/*
+	Name: Smashing HTML5
+	Date: July 2009
+	Description: Sample layout for HTML5 and CSS3 goodness.
+	Version: 1.0
+	Author: Enrique Ramírez
+	Autor URI: http://enrique-ramirez.com
+*/
+ 
+/* Imports */
+@import url("reset.css");
+@import url("global-forms.css");
+ 
+/***** Global *****/
+/* Body */
+	body {
+		background-color: #ddd;
+		color: #000305;
+		font-size: 87.5%; /* Base font size: 14px */
+		font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+		line-height: 1.429;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+	}
+ 
+/* Headings */
+h2 {font-size: 1.571em}	/* 22px */
+h3 {font-size: 1.429em}	/* 20px */
+h4 {font-size: 1.286em}	/* 18px */
+h5 {font-size: 1.143em}	/* 16px */
+h6 {font-size: 1em}	/* 14px */
+ 
+h2, h3, h4, h5, h6 {
+	font-weight: 400;
+	line-height: 1.1;
+	margin-bottom: .8em;
+}
+ 
+/* Anchors */
+a {outline: 0;}
+a img {border: 0px; text-decoration: none;}
+a:link, a:visited, a {
+	color: #009FDE;
+	text-decoration: none;
+}
+a:hover, a:active {
+	text-decoration: underline;
+}
+ 
+/* Paragraphs */
+p {margin-bottom: 1.143em;}
+* p:last-child {margin-bottom: 0;}
+ 
+strong, b {font-weight: bold;}
+em, i {font-style: italic;}
+ 
+::-moz-selection {background: #C74350; color: #fff;}
+::selection {background: #C74350; color: #fff;}
+ 
+/* Lists */
+ul {
+	list-style: outside disc;
+	margin: 1em 0 1.5em 1.5em;
+}
+ 
+ol {
+	list-style: outside decimal;
+	margin: 1em 0 1.5em 1.5em;
+}
+ 
+dl {margin: 0 0 1.5em 0;}
+dt {font-weight: bold;}
+dd {margin-left: 1.5em;}
+ 
+/* Quotes */
+blockquote {font-style: italic;}
+cite {}
+ 
+q {}
+ 
+/* Tables */
+table {margin: .5em auto 1.5em auto; width: 98%;}
+ 
+/* Thead */
+thead th {padding: .5em .4em; text-align: left;}
+thead td {}
+
+/* Tbody */
+tbody td {padding: .5em .4em;}
+tbody th {}
+
+tbody .alt td {}
+tbody .alt th {}
+
+/* Tfoot */
+tfoot th {}
+tfoot td {}
+	
+code {
+	background-color:#f9f9f9;
+	border: 1px solid #cdcdcd;
+	padding:10px;
+	display:block;
+}
+
+#wrapper {
+	width:960px;
+	margin: 20px auto;
+}
+header {
+	padding:20px;
+	height:100px;
+	line-height:100px;
+	background-color:#FFF;
+	border-radius:5px;
+}
+header h1 {
+	font-size:32px;
+}
+nav {
+	margin: 10px 0;
+	background-color: #FFF;
+	overflow:hidden;
+	border-radius:5px;
+}
+nav ul {
+	overflow:hidden;
+	margin:0;
+}
+nav ul li {
+	float:left;
+	margin:0 5px;
+	list-style-type:none;
+}
+nav ul li a {
+	padding:5px;
+	display:block;
+	float:left;
+}
+nav ul li a:hover {
+	color:#fff;
+	background-color:#009FDE;
+}
+nav ul li a:link {
+	text-decoration:none;
+	color:#009FDE;
+}
+nav ul li a:hover {
+	color:#fff;
+}
+footer {
+	text-align: center;
+	background-color:#fff;
+	border-radius:5px;
+	padding:5px;
+	font-size:12px;
+	margin-top:10px;
+}
+section#sidebar {
+	float:left;
+	width:300px;
+	clear:both;
+}
+#sidebar .box {
+	background-color:#fff;
+	padding:20px;
+	border-radius:5px;
+	margin-bottom:10px;
+}
+#sidebar .box ul {
+	margin-bottom:0;
+}
+.clear {
+	clear:both;
+}
+section#main {
+	float:right;
+	width:610px;
+	background-color:#fff;
+	border-radius:5px;
+	padding:20px;
+}

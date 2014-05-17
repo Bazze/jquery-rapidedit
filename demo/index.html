@@ -1,125 +1,141 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>In-page edit</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" language="javascript"></script>
-<script type="text/javascript" src="tiny_mce/jquery.tinymce.js" language="javascript"></script>
-<script type="text/javascript" src="scripts/jquery.metadata.js" language="javascript"></script>
-<script type="text/javascript" src="jquery.autogrow.js" language="javascript"></script>
-<script type="text/javascript" src="jquery.rapidEdit.js" language="javascript"></script>
-<script type="text/javascript">
-$(document).ready( function() {
-	var settings = {
-					editLinkHoverAttribute: 'background-color',
-					editLinkHoverValue: 'red',
-					tinymce: true
-					};
-	$.rapidEdit("ajax.php", settings);
-});
-</script>
-<style type="text/css"> 
-<!-- 
-body  {
-	font: 100% Verdana, Arial, Helvetica, sans-serif;
-	background: #666666;
-	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
-	padding: 0;
-	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
-	color: #000000;
-}
-.twoColLiqRtHdr #container { 
-	position: relative;
-	width: 80%;  /* this will create a container 80% of the browser width */
-	background: #FFFFFF;
-	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
-	border: 1px solid #000000;
-	text-align: left; /* this overrides the text-align: center on the body element. */
-} 
-.twoColLiqRtHdr #header { 
-	background: #DDDDDD; 
-	padding: 0 10px;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
-} 
-.twoColLiqRtHdr #header h1 {
-	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
-	padding: 10px 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
-}
+  <title>RapidEdit DEMO</title>
 
-.twoColLiqRtHdr #sidebar1 {
-	position: absolute;
-	right: 0;
-	width: 24%; 
-	background: #EBEBEB; /* the background color will be displayed for the length of the content in the column, but no further */
-	padding-top: 15px 0; /* top and bottom padding create visual space within this div  */
-}
-.twoColLiqRtHdr #sidebar1 h3, .twoColLiqRtHdr #sidebar1 p {
-	margin-left: 10px; /* the left and right margin should be given to every element that will be placed in the side columns */
-	margin-right: 10px;
-}
+  <meta charset="utf-8" />
 
-.twoColLiqRtHdr #mainContent { 
-	margin: 0 26% 0 10px; /* the left margin should mirror the margin on the header and footer for proper alignment. */
-} 
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
 
-.twoColLiqRtHdr #footer { 
-	padding: 0 10px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
-	background:#DDDDDD; 
-	z-index: 100;
-} 
-.twoColLiqRtHdr #footer p {
-	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
-	padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
-}
+  <link rel="stylesheet" type="text/css" href="rapidedit/css/rapidEdit.css" />
 
-/* Miscellaneous classes for reuse */
-.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
-	float: right;
-	margin-left: 8px;
-}
-.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
-	float: left;
-	margin-right: 8px;
-}
-.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
-	clear:both;
-    height:0;
-    font-size: 1px;
-    line-height: 0px;
-}
---> 
-</style><!--[if IE]>
-<style type="text/css"> 
-/* place css fixes for all versions of IE in this conditional comment */
-.twoColLiqRtHdr #sidebar1 { padding-top: 30px; }
-.twoColLiqRtHdr #mainContent { zoom: 1; padding-top: 15px; }
-/* the above proprietary zoom property gives IE the hasLayout it needs to avoid several bugs */
-</style>
-<![endif]-->
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <!-- The jQuery library. Make sure you only include it once -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+  <!-- Needed for TinyMCE to work -->
+  <script type="text/javascript" src="rapidedit/js/tiny_mce/jquery.tinymce.js"></script>
+
+  <!-- The RapidEdit jQuery plugin -->
+  <script type="text/javascript" src="rapidedit/js/jquery.rapidEdit.min.js"></script>
+
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      var settings = {
+        // These settings are optional
+        editLinkImagePath: 'rapidedit/images/edit.png',
+        tinymce: false,
+        tinymceOptions: {
+          content_css: "css/main-tinymce.css",
+          script_url: "rapidedit/js/tiny_mce/tiny_mce.js",
+          theme: "advanced",
+          theme_advanced_toolbar_location: "top",
+          plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
+          theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+          theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+          theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+          theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
+          theme_advanced_statusbar_location : "bottom",
+          forced_root_block: false
+        }
+      };
+      $.rapidEdit("rapidedit/ajax/save.php", settings);
+    });
+  </script>
+
 </head>
-
 <body>
-<body class="twoColLiqRtHdr">
+  <script type="text/javascript">
 
-<div id="container">
-  <div id="header">
-    <h1 class="editable">RapidEdit demo page</h1>
-  <!-- end #header --></div>
-  <div id="sidebar1" class="editable {setParentPositionRelative: 'FALSE'}">
-    <h3>sidebar1 Content</h3>
-    <p>The sidebar1 div has the setting setParentPositionRelative: 'FALSE'. <br /> <br />The background color on this div will only show for the length of the content. If you'd like a dividing line instead, place a border on the right side of the #mainContent div if the #mainContent div will always contain more content than the #sidebar1 div. </p>
-    <p>Donec eu mi sed turpis feugiat feugiat. Integer turpis arcu, pellentesque  eget, cursus et, fermentum ut, sapien. Fusce metus mi, eleifend  sollicitudin, molestie id, varius et, nibh. Donec nec libero.</p>
-  <!-- end #sidebar1 --></div>
-  <div id="mainContent">
-    <h1 class="editable {animationSpeed: 'slow', tinymce: false, autogrow: true}"> This has animationSpeed: 'slow', tinymce: false and autogrow: true.<br /> </h1>
-    <p class="editable {editLinkHoverAttribute: 'background-color', editLinkHoverValue: 'green', animation: false}">
-    This paragraph has this settings: editLinkHoverAttribute: 'background-color', editLinkHoverValue: 'green', animation: false.<br /> <br /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent aliquam,  justo convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam  ante ac quam. Maecenas urna purus, fermentum id, molestie in, commodo  porttitor, felis. Nam blandit quam ut lacus. Quisque ornare risus quis  ligula. Phasellus tristique purus a augue condimentum adipiscing. Aenean  sagittis. Etiam leo pede, rhoncus venenatis, tristique in, vulputate at,  odio. Donec et ipsum et sapien vehicula nonummy. Suspendisse potenti. Fusce  varius urna id quam. Sed neque mi, varius eget, tincidunt nec, suscipit id,  libero. In eget purus. Vestibulum ut nisl. Donec eu mi sed turpis feugiat  feugiat. Integer turpis arcu, pellentesque eget, cursus et, fermentum ut,  sapien. Fusce metus mi, eleifend sollicitudin, molestie id, varius et, nibh.  Donec nec libero.</p>
-    <h2>H2 level heading </h2>
-    <p class="editable {editLinkPosY: 'bottom'}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent aliquam,  justo convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam  ante ac quam. Maecenas urna purus, fermentum id, molestie in, commodo  porttitor, felis. Nam blandit quam ut lacus. Quisque ornare risus quis  ligula. Phasellus tristique purus a augue condimentum adipiscing. Aenean  sagittis. Etiam leo pede, rhoncus venenatis, tristique in, vulputate at, odio.</p>
-	<!-- end #mainContent --></div>
-	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
-  <div id="footer" class="editable">
-    <p>Footer</p>
-  <!-- end #footer --></div>
-<!-- end #container --></div>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-23701326-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  <div id="wrapper">
+
+    <p style="text-align:center"><blink style="color:red;">This is only a demonstration, changes will not be saved permanently.</blink></p>
+
+    <header id="header" class="editable"><h1><a href="#">RapidEdit DEMO</a></h1></header>
+
+    <nav>
+      <ul>
+        <li id="home" class="editable"><a href="#">home</a></li>
+        <li id="portfolio" class="editable"><a href="#">portfolio</a></li>
+        <li id="blog" class="editable"><a href="#">blog</a></li>
+        <li id="contact" class="editable"><a href="#">contact</a></li>
+      </ul>
+    </nav>
+
+    <!--
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacus nibh, varius ut iaculis ut, ultrices in quam. Donec lectus dui, faucibus id aliquet vitae, luctus ut velit. Phasellus posuere fringilla vulputate. Sed semper molestie nulla non egestas. Suspendisse neque metus, posuere ut dignissim vel, vulputate vel nisl. Nullam consequat posuere porta. Vestibulum odio sapien, vulputate nec viverra quis, interdum et felis. Maecenas eu elit felis. Maecenas egestas adipiscing risus, vitae pellentesque sem mattis at.
+    -->
+
+    <section id="sidebar">
+      <div id="box1" class="box editable">
+        <h3>Maecenas egestas</h3>
+        <ul>
+          <li>Lorem ipsum dolor</li>
+          <li>Sed semper molestie</li>
+          <li>Vestibulum odio sapien</li>
+          <li>Nullam consequat</li>
+          <li>Suspendisse neque metus</li>
+        </ul>
+      </div>
+      <div id="box2" class="box editable">
+        <h3>Maecenas egestas</h3>
+        <ul>
+          <li><a href="#">Lorem ipsum dolor</a></li>
+          <li><a href="#">Sed semper molestie</a></li>
+          <li><a href="#">Vestibulum odio sapien</a></li>
+          <li><a href="#">Nullam consequat</a></li>
+          <li><a href="#">Suspendisse neque metus</a></li>
+        </ul>
+      </div>
+      <div id="box3" class="box editable">
+        <h3>Maecenas egestas</h3>
+        <ul>
+          <li>Lorem ipsum dolor</li>
+          <li>Sed semper molestie</li>
+          <li>Vestibulum odio sapien</li>
+          <li>Nullam consequat</li>
+          <li>Suspendisse neque metus</li>
+          <li>Vestibulum odio sapien</li>
+          <li>Nullam consequat</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="main" class="editable"><h2>Example Article #1 - This is a H2 Heading</h2>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dignissim consectetur porttitor. Integer sed condimentum orci. Aenean id quam a ipsum convallis tincidunt vitae quis lectus. Donec eros sapien, ultrices quis interdum eget, pulvinar et sem. Praesent vel felis nisl, eget volutpat dui. Vestibulum ac lorem massa, vitae blandit mauris.</p>
+<ul>
+<li>Aliquam hendrerit elit in leo tempor eu molestie orci molestie. Morbi in dolor dolor</li>
+<li>Class aptent taciti sociosqu ad litora torquent per conubia nostra</li>
+<li>Integer sed condimentum orci. Aenean id quam a ipsum convallis tincidunt vitae quis</li>
+</ul>
+<p>Proin at sapien arcu. Integer ut fermentum erat. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam odio quam, bibendum vitae lacinia ut, sodales ut turpis. Nullam dignissim urna vel risus condimentum in posuere nunc fermentum.</p>
+<pre style="white-space: normal;"><code>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dignissim consectetur porttitor. Integer sed condimentum orci. Aenean id quam a ipsum convallis tincidunt vitae quis lectus. Donec eros sapien, ultrices quis interdum eget, pulvinar et sem. Praesent vel felis nisl, eget volutpat dui. Vestibulum ac lorem massa, vitae blandit mauris. </code></pre>
+<ul>
+<li>Aliquam hendrerit elit in leo tempor eu molestie orci molestie. Morbi in dolor dolor</li>
+<li>Class aptent taciti sociosqu ad litora torquent per conubia nostra</li>
+<li>Integer sed condimentum orci. Aenean id quam a ipsum convallis tincidunt vitae quis</li>
+</ul>
+<p>Proin at sapien arcu. Integer ut fermentum erat. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam odio quam, bibendum vitae lacinia ut, sodales ut turpis. Nullam dignissim urna vel risus condimentum in posuere nunc fermentum.</p></section>
+
+    <div class="clear"></div>
+
+    <footer id="footer" class="editable">
+      Copyright &copy; 2012 RapidEdit DEMO
+    </footer>
+
+  </div>
 </body>
 </html>
