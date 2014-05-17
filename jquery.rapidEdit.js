@@ -6,10 +6,8 @@
  * @supports InnovaStudio LiveEditor (http://www.innovastudio.com/)
  * @supports MetaData plugin (http://docs.jquery.com/Plugins/Metadata)
  *
- * Copyright © 2009-2012 SN Solutions [ hello@snsolutions.se ]
- * 
  * Plugin Description:
- * 
+ *
  * The RapidEdit plugin makes it possible to edit any content on your website without
  * reloading the page even once. The plugin provides a simple edit-link on elements marked
  * with the class 'editable' (this is the default class, can be changed) which opens up an editor
@@ -28,23 +26,23 @@
  * and move the tinymce/jscripts/tiny_mce folder to the same folder as your jquery.rapidEdit(.min).js.
  *
  * Usage:
- *  
+ *
  * $(document).ready(function() {
  * 	 //submitTo is the path to the file which will receive the AJAX request when saving. [options] is optional.
- *   $.rapidEdit(submitTo[, options]); 
+ *   $.rapidEdit(submitTo[, options]);
  * });
  *
  * Example:
- * 
+ *
  * <script type="text/javascript">
  * $(document).ready(function() {
- *   var options = { 
+ *   var options = {
  *       editLinkImagePath: "../images/edit.png",
  *		 editLinkHoverAttribute: "background-color",
  *		 editLinkHoverValue: "red",
  *		 tinymce: true
  *	 };
- *   $.rapidEdit("ajax/saveContent.php", options); 
+ *   $.rapidEdit("ajax/saveContent.php", options);
  * });
  * </script>
  *
@@ -52,14 +50,14 @@
  *   This is a header.
  * </div>
  * <div class="main">
- * 
+ *
  *   <!-- Editable header -->
  *   <h1 class="editable">Main Content</h1>
- * 
+ *
  *   <!-- Editable paragraph -->
  *   <p class="editable">
  *     Lorum ipsum dolor sit amet, consectetuer adipiscing elit.
- *     <!-- Editable span -->  
+ *     <!-- Editable span -->
  *     <span class="author editable">John Doe</span>
  *   </p>
  *
@@ -91,7 +89,7 @@
  *
  * {"error":"This is where your error message should be which will be displayed to the user."}
  * (In PHP-code: <?php echo json_encode(array("error" => "This is where your error message should be which will be displayed to the user.")); ?>)
- * 
+ *
  * Default settings (they can all be changed):
  *
  * rapidEditClass: 'editable',
@@ -131,7 +129,7 @@
  * 	       ["group1", "", ["Bold", "Italic", "Underline", "FontDialog", "ForeColor", "TextDialog", "RemoveFormat"]],
  * 	       ["group2", "", ["Bullets", "Numbering", "JustifyLeft", "JustifyCenter", "JustifyRight"]],
  * 	       ["group3", "", ["LinkDialog", "ImageDialog", "YoutubeDialog", "TableDialog", "Emoticons"]],
- * 	       ["group4", "", ["Undo", "Redo", "FullScreen", "SourceDialog"]]        
+ * 	       ["group4", "", ["Undo", "Redo", "FullScreen", "SourceDialog"]]
  * 	   ],
  * 	   css: "LiveEditor/styles/default.css"
  * },
@@ -159,7 +157,7 @@
  * previewButtonClass: 'rapidEdit-preview',
  * previewButtonValue: 'Preview',
  * previewButtonStyle: 'margin:5px 5px 0 0;background-color: #F7F7F7;border-color: #CCCCCC;border-radius: 11px 11px 11px 11px;border-style: solid;border-width: 1px;color: #464646;cursor: pointer;font-size: 12px !important;line-height: 15px;padding: 3px 10px;text-shadow: 0 1px 0 #FFFFFF;white-space: nowrap;width: auto;',
- * endPreviewButtonId: 'rapidEdit-endpreview', 
+ * endPreviewButtonId: 'rapidEdit-endpreview',
  * endPreviewButtonValue: 'End preview',
  * endPreviewButtonStyle: 'margin:0;background-color: #F7F7F7;border-color: #CCCCCC;border-radius: 11px 11px 11px 11px;border-style: solid;border-width: 1px;color: #464646;cursor: pointer;font-size: 12px !important;line-height: 15px;padding: 3px 10px;text-shadow: 0 1px 0 #FFFFFF;white-space: nowrap;width: auto;',
  * endPreviewContainerStyle: 'padding:5px;position:fixed;bottom:0;left:100px;border:3px solid #cdcdcd;border-bottom:0;border-radius:10px 10px 0 0;background-color:#fff;z-index:9999;',
@@ -177,12 +175,12 @@
 		var settings = $.extend({}, $.rapidEdit.defaults, options);
 		settings.submitTo = submitTo;
 		$.rapidEdit.settings = settings;
-		
+
 		return $("." + $.rapidEdit.settings.rapidEditClass).each(function() {
 			$.rapidEdit.attachEditLink($(this));
 		});
 	}
-	
+
 	$.rapidEdit.bindClick = function(element) {
 		var $el = $(element);
 		var settings = $.rapidEdit.metadata(element);
@@ -205,7 +203,7 @@
 			});
 		}
 	}
-	
+
 	$.rapidEdit.bindSubmit = function(element, id) {
 		var settings = $.rapidEdit.metadata(element);
 		var $el = $(element);
@@ -231,10 +229,10 @@
 					alert("Something went wrong. Save was unsuccessful. ("+errorThrown+")");
 				}
 			});
-			
+
 		});
 	}
-	
+
 	$.rapidEdit.bindPreview = function(element, id) {
 		var settings = $.rapidEdit.metadata(element);
 		var $el = $(element);
@@ -255,14 +253,14 @@
 			});
 		});
 	}
-	
+
 	$.rapidEdit.bindCancel = function(oldContent, element) {
 		var settings = $.rapidEdit.metadata(element);
 		$("." + settings.overlayContainerClass + " ." + settings.cancelButtonClass).bind('click', function() {
 			$.rapidEdit.restoreElement(oldContent, element, true);
 		});
 	}
-	
+
 	$.rapidEdit.resetHover = function(element) {
 		var settings = $.rapidEdit.metadata(element);
 		$(element).css(settings.editLinkHoverAttribute, "");
@@ -279,7 +277,7 @@
 		$el.append(editLink);
 		$.rapidEdit.bindClick(element);
 	}
-	
+
 	$.rapidEdit.editElement = function(element, id) {
 		var settings = $.rapidEdit.metadata(element);
 		var $el = $(element);
@@ -297,7 +295,7 @@
 		$.rapidEdit.bindCancel(oldContent, element);
 		$.rapidEdit.initiateWYSIWYG(settings);
 	}
-	
+
 	$.rapidEdit.restoreElement = function(content, element, nochange) {
 		var settings = $.rapidEdit.metadata(element);
 		$.rapidEdit.restoreTinyMCE(settings);
@@ -307,7 +305,7 @@
 		$.rapidEdit.removeOverlay();
 		$.rapidEdit.attachEditLink(element);
 	}
-	
+
 	$.rapidEdit.getEditorValue = function(settings) {
 		var newContent = "";
 		if (settings.tinymce == true) {
@@ -319,29 +317,29 @@
 		}
 		return newContent;
 	}
-	
+
 	$.rapidEdit.metadata = function(element) {
 		var settings = $.rapidEdit.settings;
 		return $.metadata ? $.extend({}, settings, $(element).metadata()) : settings;
 	}
-	
+
 	$.rapidEdit.restoreTinyMCE = function(settings) {
 		if (settings.tinymce == true) {
 			$("." + settings.textareaClass).tinymce().remove();
 		}
 	}
-	
+
 	$.rapidEdit.initiateWYSIWYG = function(settings) {
 		$.rapidEdit.initiateTinyMCE(settings);
 		$.rapidEdit.initiateLiveEditor(settings);
 	}
-	
+
 	$.rapidEdit.initiateTinyMCE = function(settings) {
 		if (settings.tinymce == true) {
 			$("." + settings.textareaClass).tinymce(settings.tinymceOptions)
 		}
 	}
-	
+
 	$.rapidEdit.initiateLiveEditor = function(settings) {
 		if (settings.liveEditor == true) {
 			eval(settings.liveEditorObject + ' = new InnovaEditor("' + settings.liveEditorObject + '");');
@@ -349,7 +347,7 @@
 				eval(settings.liveEditorObject + '[key] = value;');
 			});
 			eval(settings.liveEditorObject + '.REPLACE(settings.textareaId, settings.liveEditorDivId)');
-			
+
 			// Fix for full screen mode
 			var container = document.getElementById(settings.overlayContainerId);
 			var tmpLeft = container.style.left; var tmpTop = container.style.top;
@@ -358,19 +356,19 @@
 			eval(settings.liveEditorObject + '.onNormalScreen = function () {container.style.left=tmpLeft;container.style.top=tmpTop;container.style.marginLeft=tmpMarginLeft;container.style.marginTop=tmpMarginTop;};');
 		}
 	}
-	
-	$.rapidEdit.nl2br = function(str) { 
+
+	$.rapidEdit.nl2br = function(str) {
 		var breakTag = '<br />';
 		str = (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 		return str;
 	}
-	
+
 	$.rapidEdit.br2nl = function(str) {
 		str = (str + '').replace(/<br \/>/g, "\n");
 		str = (str + '').replace(/<br>/g, "\n");
 		return str;
 	}
-	
+
 	$.rapidEdit.startOverlay = function(settings, element) {
 		//add the elements to the dom
 		$("body")
@@ -387,7 +385,7 @@
 		$("." + settings.overlayContainerClass)
 			.css({
 				"top":        "50%",
-				"left":       "50%",				
+				"left":       "50%",
 				"width":      settings.overlayContainerWidth,
 				"min-height": settings.overlayContainerMinHeight,
 				"margin-top": -(settings.overlayContainerMinHeight/2),
@@ -402,30 +400,30 @@
 				$.rapidEdit.attachEditLink(element);
 			});
 	}
-	
+
 	$.rapidEdit.removeOverlay = function() {
 		var settings = $.rapidEdit.settings;
 		var $el = $("." + settings.overlayContainerClass + ", ." + settings.overlayClass);
 		$el.animate({"opacity":"0"}, settings.overlayFadeOutSpeed, settings.overlayFadeOutEasing, function(){
 			$("body").css({"overflow":"visible"});
-			$el.remove();	
+			$el.remove();
 		});
 	}
-	
+
 	$.rapidEdit.hideOverlay = function() {
 		var settings = $.rapidEdit.settings;
 		$("." + settings.overlayContainerClass + ", ." + settings.overlayClass).hide();
 	}
-	
+
 	$.rapidEdit.showOverlay = function() {
 		var settings = $.rapidEdit.settings;
 		$("." + settings.overlayContainerClass + ", ." + settings.overlayClass).show();
 	}
-	
+
 	$.rapidEdit.preview = false;
-	
+
 	$.rapidEdit.settings = {};
-	
+
 	$.rapidEdit.defaults = {
 		rapidEditClass: 'editable',
 		submitTo: '',
@@ -465,7 +463,7 @@
                 ["group1", "", ["Bold", "Italic", "Underline", "FontDialog", "ForeColor", "TextDialog", "RemoveFormat"]],
                 ["group2", "", ["Bullets", "Numbering", "JustifyLeft", "JustifyCenter", "JustifyRight"]],
                 ["group3", "", ["LinkDialog", "ImageDialog", "YoutubeDialog", "TableDialog", "Emoticons"]],
-                ["group4", "", ["Undo", "Redo", "FullScreen", "SourceDialog"]]        
+                ["group4", "", ["Undo", "Redo", "FullScreen", "SourceDialog"]]
 			],
 			css: "LiveEditor/styles/default.css"
 		},
@@ -493,7 +491,7 @@
 		previewButtonClass: 'rapidEdit-preview',
 		previewButtonValue: 'Preview',
 		previewButtonStyle: 'margin:5px 5px 0 0;background-color: #F7F7F7;border-color: #CCCCCC;border-radius: 11px 11px 11px 11px;border-style: solid;border-width: 1px;color: #464646;cursor: pointer;font-size: 12px !important;line-height: 15px;padding: 3px 10px;text-shadow: 0 1px 0 #FFFFFF;white-space: nowrap;width: auto;',
-		endPreviewButtonId: 'rapidEdit-endpreview', 
+		endPreviewButtonId: 'rapidEdit-endpreview',
 		endPreviewButtonValue: 'End preview',
 		endPreviewButtonStyle: 'margin:0;background-color: #F7F7F7;border-color: #CCCCCC;border-radius: 11px 11px 11px 11px;border-style: solid;border-width: 1px;color: #464646;cursor: pointer;font-size: 12px !important;line-height: 15px;padding: 3px 10px;text-shadow: 0 1px 0 #FFFFFF;white-space: nowrap;width: auto;',
 		endPreviewContainerStyle: 'padding:5px;position:fixed;bottom:0;left:100px;border:3px solid #cdcdcd;border-bottom:0;border-radius:10px 10px 0 0;background-color:#fff;z-index:9999;',
